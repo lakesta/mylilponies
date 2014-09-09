@@ -1,0 +1,30 @@
+<div class="alert alert-danger">
+    <strong>WARNING!</strong> This item is about to be deleted and cannot be undone.
+</div>
+
+<p>
+    Are you sure you want to delete?
+</p>
+
+<p>
+    <strong>{{ title|default('[No item selected]') }}</strong>
+</p>
+
+<form id="action-delete" action="" method="post" class="form-horizontal">
+    <fieldset>
+        <div class="well well-lg">
+            <div class="pull-right">
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-danger"><strong>YES, DELETE</strong></button>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{{ action_cancel|default('#') }}">
+                <button type="button" class="btn btn-success">NO</button>
+            </a>
+        </div>
+        <input type="hidden" name="action-delete" value="delete" />
+    </fieldset>
+</form>

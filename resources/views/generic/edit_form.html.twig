@@ -1,0 +1,78 @@
+<form name="form" class="edit-form form-horizontal" method="post">
+    <fieldset>
+
+        <!-- Alerts -->
+        {% include 'generic/alert-message.html.twig' %}
+
+        <!-- Form Name -->
+        <legend>{{ form.name }}</legend>
+
+        <!-- Text input-->
+        <div class="control-group">
+            {% for field_key, field_val in form.content %}
+                {% if field_key not in form.hide %}
+                    <div class="controls">
+                        {% if form.fields[field_key].title is defined and form.fields[field_key].type != 'image' %}
+                            <label class="control-label" for="{{ field_key }}">{{ form.fields[field_key].title }}</label>
+                        {% endif %}
+                        {% if form.fields[field_key].type == 'select' %}
+                            <select name="{{ field_key }}" id="{{ field_key }}">
+                                {% for option_index, option_row in form.fields[field_key].data %}
+                                    <option value="{{ option_row.id }}" {% if option_row.id == field_val %}selected="selected"{% endif %}>{{ option_row.name }}</option>
+                                {% endfor %}
+                            {{ field_val }}
+                            </select>
+                        {% elseif form.fields[field_key].type == 'hidden' %}
+                            <input type="hidden" name="{{ field_key }}" value="{{ form.fields[field_key].value }}" />
+                        {% elseif form.fields[field_key].type == 'image' %}
+                            {% if form.fields[field_key].title is defined %}
+                                {% set field_title = form.fields[field_key].title %}
+                            {% endif %}
+
+                            {% if form.fields[field_key].description is defined %}
+                                {% set field_description = form.fields[field_key].description %}
+                            {% endif %}
+
+                            {% if field_val is defined and field_val != '' %}
+                                <label class="control-label" for="{{ field_key }}">Image</label>
+                                <img src="/img/uploads/images/thumbnail/{{ field_val }}" />
+                            {% endif %}
+
+                            {% include 'admin/generic/image-upload.html.twig' %}
+                        {% elseif form.fields[field_key].type == 'blob' %}
+                             <textarea
+                                    id="{{ field_key }}"
+                                    name="{{ field_key }}"
+                                    placeholder=""
+                                    {% if form.fields[field_key].class is defined %}
+                                        class="{{ form.fields[field_key].class }}"
+                                    {% endif %}
+                                    >{{ field_val }}</textarea>
+                        {% else %}
+                            <input
+                                    id="{{ field_key }}"
+                                    name="{{ field_key }}"
+                                    placeholder=""
+                                    {% if form.fields[field_key].class is defined %}
+                                        class="{{ form.fields[field_key].class }}"
+                                    {% endif %}
+                                    type="text"
+                                    value="{{ field_val }}"
+                            />
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="spacer"></div>
+
+        <!-- Button -->
+        <div class="control-group">
+            <div class="controls">
+                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>

@@ -1,0 +1,19 @@
+{% extends "layout.html.twig" %}
+
+{% set page_title = 'Ponies' %}
+{% set section_title = 'View' %}
+
+{% set active_page = 'ponies' %}
+{% set active = 'view' %}
+
+{% set toolbar = 'pony/asset/toolbar.html.twig' %}
+
+{% block content %}
+
+    {% include 'generic/masthead.html.twig' %}
+
+    {% include 'generic/alert-message.html.twig' %}
+
+    {% include 'generic/table_list.html.twig' %}
+
+{% endblock %}

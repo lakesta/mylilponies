@@ -1,0 +1,14 @@
+<div id="page-masthead">
+    {% if toolbar is defined %}
+        <div class="pull-right">
+            {% include toolbar %}
+        </div>
+    {% endif %}
+
+    <div class="">
+        <h1>{{ page_title }}{% if section_title|length %} - {{ section_title }} {% endif %}</h1>
+        {% if section_subtitle is defined %}<h3>{{ section_subtitle }}</h3>{% endif %}
+    </div>
+</div>
+
+<div class="spacer"></div>

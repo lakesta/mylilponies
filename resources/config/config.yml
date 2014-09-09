@@ -1,0 +1,8 @@
+database:
+   driver: pdo_mysql
+   host: localhost
+   port: 8889
+   dbname: mylilponies
+   user: root
+   password: root
+   charset: utf8

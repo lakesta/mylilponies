@@ -1,0 +1,17 @@
+{% extends "layout.html.twig" %}
+
+{% set page_title = 'Ponies' %}
+{% set section_title = 'Delete' %}
+
+{% set active_page = 'ponies' %}
+{% set active = 'delete' %}
+
+{% set toolbar = 'pony/asset/toolbar.html.twig' %}
+
+{% block content %}
+    {% set action_cancel = '/' %}
+
+    {% include 'generic/masthead.html.twig' %}
+
+    {% include 'generic/delete_panel.html.twig' %}
+{% endblock %}

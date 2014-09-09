@@ -1,0 +1,52 @@
+{% include 'generic/alert-message.html.twig' %}
+
+<table class="table table-list-search">
+    <thead>
+    <tr>
+        {% for key, item in list_header %}
+            {% if key != 'id' %}
+                <th {% if item == 'actions' %}class="text-right"{% endif %}>{{ item }}</th>
+            {% endif %}
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% if list|length > 0 %}
+        {% for key, item in list %}
+            <tr>
+                {% set item_id = '' %}
+
+                {% for column_key, column in item %}
+                    {% if column_key == 'id' %}
+                        {% set item_id = column %}
+                    {% endif %}
+
+                    {% if 'id' not in column_key and column_key not in list_hide %}
+                        <td>
+                            {% if '.jpg' in column or '.png' in column %}
+                                <img src="/img/uploads/images/thumbnail/{{ column }}" />
+                            {% else %}
+                                {{ column }}
+                            {% endif %}
+                        </td>
+                    {% endif %}
+                {% endfor %}
+
+                {% if list_actions|default([])|length %}
+                    <td style="text-align: right">
+                            {% for action_key, action in list_actions %}
+                                <a href="{{ action.link|replace({'%id%': item_id}) }}" class="btn btn-default">{{ action.title }}</a>
+                            {% endfor %}
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="{{ list_header|length }}">
+            There are currently no results to show.
+            </td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>

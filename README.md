@@ -2,7 +2,6 @@ My Lil Ponies
 ---
 
 1. DB/Host set up:
-
 	* Point vhost to web/
 	* In /resources/config edit config.yml and update db settings to match your local mysql db
 

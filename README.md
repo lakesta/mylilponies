@@ -9,6 +9,7 @@ My Lil Ponies
 
 1. Command line (from repo root)
 	* ```composer install```
+	* ```./console doctrine:database:create```
 	* ```./console doctrine:schema:load```
 	* ```./console doctrine:schema:fill```
 
